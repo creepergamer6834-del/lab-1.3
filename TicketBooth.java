@@ -148,7 +148,7 @@ public class TicketBooth {
     // to-do: implement sell
     public void sell(int groupSize) {
         if (groupSize < 1) {
-            System.out.println("Invalid group size");
+            System.out.println("Invalid group size: " + groupSize);
         }
         if (groupSize > seatsLeft) {
             System.out.println("Not enough seats for " + groupSize);
