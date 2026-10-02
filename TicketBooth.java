@@ -15,7 +15,7 @@ public class TicketBooth {
     // Returns the name of the show.
     // to-do: implement getShowName
     public String getShowName() {
-        return "\"" + showName + "\"";
+        return showName;
     }
 
     // Returns the hour the show starts, on a 24-hour clock.
@@ -68,10 +68,10 @@ public class TicketBooth {
             price = 10;
         }
         if ((showHour >= 12) && (showHour < 16) && (age > 12) && (age <= 64)) {
-            price = -3;
+            price -= 3;
         }
         if (isMember) {
-            price = -2;
+            price -= 2;
         }
         return price;
     }
@@ -80,12 +80,13 @@ public class TicketBooth {
 
     // Returns "morning" before 12, "matinee" from 12 through 16, and "evening" from 17 on.
     public String showtimeLabel() {
-        if (showHour >= 12) {
-            return "matinee";
-        }
         if (showHour >= 17) {
             return "evening";
         }
+        if (showHour >= 12) {
+            return "matinee";
+        }
+
         return "morning";
     }
 
@@ -117,7 +118,7 @@ public class TicketBooth {
         if ((newShowHour >= 10) && (newShowHour <= 23)) {
             newShowHour = showHour;
         } else {
-            System.out.println("Invalid Show Hour: " + newShowHour);
+            System.out.println("Invalid show hour: " + newShowHour);
         }
 
     }
@@ -126,9 +127,9 @@ public class TicketBooth {
     // to-do: implement setSeatsLeft
     public void setSeatsLeft(int newSeatsLeft) {
         if ((newSeatsLeft >= 0) && (newSeatsLeft <= 200)) {
-            newSeatsLeft = seatsLeft;
+            seatsLeft = newSeatsLeft;
         } else {
-            System.out.println("Invalid Seats Left: " + newSeatsLeft);
+            System.out.println("Invalid seat count: " + newSeatsLeft);
         }
     }
 
