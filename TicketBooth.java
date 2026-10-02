@@ -35,44 +35,43 @@ public class TicketBooth {
     // Returns "child", "student", "adult", or "senior" for one age.
     // to-do: implement priceCategory
     public String priceCategory(int age) {
-        if (age <= 0){
+        if (age <= 0) {
             return "Invalid age";
         }
-        if ((age <= 12) && (age > 0)){
+        if ((age <= 12) && (age > 0)) {
             return "child";
         }
-        if((age <= 17) && (age > 12)){
+        if ((age <= 17) && (age > 12)) {
             return "student";
         }
-        if ((age <= 64) && (age > 17)){
+        if ((age <= 64) && (age > 17)) {
             return "adult";
         }
         return "senior";
     }
 
     // Returns the price in whole dollars after the matinee and member discounts.
-    // to-do: implement ticketPrice 
+    // to-do: implement ticketPrice
     // child = 8, student = 12, adult = 18, senior = 10
     public int ticketPrice(int age, boolean isMember) {
         int price = 0;
-        if (priceCategory(age).equals("child")){
+        if (priceCategory(age).equals("child")) {
             price = 8;
         }
-        if (priceCategory(age).equals("student")){
+        if (priceCategory(age).equals("student")) {
             price = 12;
         }
-        if (priceCategory(age).equals("adult")){
+        if (priceCategory(age).equals("adult")) {
             price = 18;
         }
-        if (priceCategory(age).equals("senior")){
+        if (priceCategory(age).equals("senior")) {
             price = 10;
         }
-        if ((showHour >= 12) && (showHour < 16) && (age > 12) 
-            && (age <= 64)){
-            price =- 3;
+        if ((showHour >= 12) && (showHour < 16) && (age > 12) && (age <= 64)) {
+            price = -3;
         }
-        if (isMember){
-            price =- 2;
+        if (isMember) {
+            price = -2;
         }
         return price;
     }
@@ -115,27 +114,39 @@ public class TicketBooth {
     // Stores the new hour only when it is 10 through 23.
     // to-do: implement setShowHour
     public void setShowHour(int newShowHour) {
-        if ((newShowHour >= 10) && (newShowHour <= 23)){
+        if ((newShowHour >= 10) && (newShowHour <= 23)) {
             newShowHour = showHour;
         }
+        System.out.println("Invalid Show Hour: " + newShowHour);
     }
 
     // Stores the new count only when it is 0 through 200.
     // to-do: implement setSeatsLeft
     public void setSeatsLeft(int newSeatsLeft) {
-        if ((newSeatsLeft >= 0) && (newSeatsLeft <= 200)){
+        if ((newSeatsLeft >= 0) && (newSeatsLeft <= 200)) {
             newSeatsLeft = seatsLeft;
         }
+        System.out.println("Invalid Seats Left: " + newSeatsLeft);
     }
 
     // Stores the new name only when it is present and not empty.
     // to-do: implement setShowName
     public void setShowName(String newShowName) {
-        
+        if ((newShowName == null) || (newShowName.length() == 0)) {
+            System.out.println("Invalid Show Name");
+        }
+        showName = newShowName;
     }
 
     // Sells the seats when the group fits. Otherwise prints why and changes nothing.
     // to-do: implement sell
     public void sell(int groupSize) {
+        if (groupSize < 1) {
+            System.out.println("Invalid Group Size");
+        }
+        if (groupSize > seatsLeft) {
+            System.out.println("Not enough seats for " + groupSize);
+        }
+        seatsLeft = -groupSize;
     }
 }
