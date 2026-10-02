@@ -116,7 +116,7 @@ public class TicketBooth {
     // to-do: implement setShowHour
     public void setShowHour(int newShowHour) {
         if ((newShowHour >= 10) && (newShowHour <= 23)) {
-            newShowHour = showHour;
+            showHour = newShowHour;
         } else {
             System.out.println("Invalid show hour: " + newShowHour);
         }
@@ -137,7 +137,7 @@ public class TicketBooth {
     // to-do: implement setShowName
     public void setShowName(String newShowName) {
         if ((newShowName == null) || (newShowName.length() == 0)) {
-            System.out.println("Invalid Show Name");
+            System.out.println("Invalid show name");
         } else {
             showName = newShowName;
         }
@@ -153,7 +153,7 @@ public class TicketBooth {
         if (groupSize > seatsLeft) {
             System.out.println("Not enough seats for " + groupSize);
         } else {
-            seatsLeft = -groupSize;
+            seatsLeft -= groupSize;
         }
 
     }
