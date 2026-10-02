@@ -95,7 +95,7 @@ public class TicketBooth {
         if (age <= 12) {
             color = "red";
         }
-        if (age <= 17) {
+        if ((age <= 17) && (age > 12)) {
             color = "yellow";
         }
         return color;
@@ -116,8 +116,10 @@ public class TicketBooth {
     public void setShowHour(int newShowHour) {
         if ((newShowHour >= 10) && (newShowHour <= 23)) {
             newShowHour = showHour;
+        } else {
+            System.out.println("Invalid Show Hour: " + newShowHour);
         }
-        System.out.println("Invalid Show Hour: " + newShowHour);
+
     }
 
     // Stores the new count only when it is 0 through 200.
@@ -125,8 +127,9 @@ public class TicketBooth {
     public void setSeatsLeft(int newSeatsLeft) {
         if ((newSeatsLeft >= 0) && (newSeatsLeft <= 200)) {
             newSeatsLeft = seatsLeft;
+        } else {
+            System.out.println("Invalid Seats Left: " + newSeatsLeft);
         }
-        System.out.println("Invalid Seats Left: " + newSeatsLeft);
     }
 
     // Stores the new name only when it is present and not empty.
@@ -134,8 +137,10 @@ public class TicketBooth {
     public void setShowName(String newShowName) {
         if ((newShowName == null) || (newShowName.length() == 0)) {
             System.out.println("Invalid Show Name");
+        } else {
+            showName = newShowName;
         }
-        showName = newShowName;
+
     }
 
     // Sells the seats when the group fits. Otherwise prints why and changes nothing.
@@ -146,7 +151,9 @@ public class TicketBooth {
         }
         if (groupSize > seatsLeft) {
             System.out.println("Not enough seats for " + groupSize);
+        } else {
+            seatsLeft = -groupSize;
         }
-        seatsLeft = -groupSize;
+
     }
 }
